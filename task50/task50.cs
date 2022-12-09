@@ -1,10 +1,6 @@
 ﻿// Задача 50: Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
 // и возвращает значение этого элемента или же указание, что такого элемента нет.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// 17 -> такого числа в массиве нет
+
 
 void RandomFillArray (int [,] numbers)
 {
@@ -19,17 +15,40 @@ void RandomFillArray (int [,] numbers)
     }
 }
 
-void CheckMatchArray (int [,] checkArr)
+void SearchElement (int [,] elSearch)
 {
-    Console.WriteLine("Попробуйте угадать число в массиве.");
-    Console.WriteLine("Введите, пожалуйста, свое число: ");
-    int userNumber = Convert.ToInt32(Console.ReadLine());
-    for (int ind = 0; ind < checkArr.GetLength(0); ind++)
+    Console.WriteLine();
+    Console.WriteLine("Введите поочередно данные позиции элемента.");
+    Console.WriteLine();
+    Console.Write("Введите индекс строки: ");
+    var Row = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите индекс столбца: ");
+    var Col = Convert.ToInt32(Console.ReadLine());
+    for (int ind = 0; ind < elSearch.GetLength(0); ind++)
     {
-        for (int jnd = 0; jnd < checkArr.GetLength(1); jnd++)
+        if (Row < 0 
+          | Row > elSearch.GetLength(0)
+          | Row == elSearch.GetLength(0) 
+          | Col < 0 
+          | Col > elSearch.GetLength(1)
+          | Col == elSearch.GetLength(1)) 
+          {
+            Console.WriteLine();
+            Console.WriteLine("Такого элемента в массиве нет!");
+            break;
+          }
+        for (int jnd = 0; jnd < elSearch.GetLength(1); jnd++)
         {
-        if (userNumber == checkArr [ind, jnd]) Console.WriteLine ("Найдено совпадение!");
-        if (userNumber != checkArr [ind, jnd]) Console.WriteLine("Совпадений нет!");
+            if(ind == Row && jnd == Col)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Значение элемента: {elSearch[ind, jnd]}");
+                break;
+            }
+            else
+            {
+                continue;
+            }
         }
     }
 }
@@ -50,13 +69,24 @@ void PrintArr (int [,] printArrElements)
 }
 
 Console.WriteLine();
+Console.WriteLine("Данная программа принимает на вход позиции элемента в двумерном массиве,"); 
+Console.WriteLine("и возвращает значение этого элемента или же указание, что такого элемента нет.");
+Console.WriteLine();
+Console.WriteLine("Для начала создайте массив.");
+Console.WriteLine();
 Console.Write("Введите количество строк в массиве: ");
 int userDataRow = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите количество столбцов: ");
 int userDataCol = Convert.ToInt32(Console.ReadLine());
-
-int [,] newArray = new int [userDataRow, userDataCol];
-
-RandomFillArray(newArray);
-CheckMatchArray(newArray);
-PrintArr(newArray);
+if (userDataRow == 0 | userDataCol == 0)
+{
+    Console.WriteLine();
+    Console.WriteLine("Ошибка ввода. Массив не может быть создан с параметрами равными нулю.");
+}
+else
+{
+    int [,] newArray = new int [userDataRow, userDataCol];
+    RandomFillArray(newArray);
+    SearchElement(newArray);
+    PrintArr(newArray);
+}
