@@ -78,10 +78,10 @@ Console.Write("Введите количество строк в массиве:
 int userDataRow = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите количество столбцов: ");
 int userDataCol = Convert.ToInt32(Console.ReadLine());
-if (userDataRow == 0 | userDataCol == 0)
+if (userDataRow <= 0 | userDataCol <= 0)
 {
     Console.WriteLine();
-    Console.WriteLine("Ошибка ввода. Массив не может быть создан с параметрами равными нулю.");
+    Console.WriteLine("Ошибка ввода. Массив не может быть создан с параметрами меньше либо равными нулю.");
 }
 else
 {
