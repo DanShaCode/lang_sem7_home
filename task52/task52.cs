@@ -5,7 +5,7 @@
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3
 
- void RandomFillArray (int [,] num)
+ void RandomFillArray (int [,] num) // Заполняем массив
  {
     for (int i = 0; i < num.GetLength(0); i++)
     {
@@ -18,15 +18,31 @@
     }
  }
 
+  void ColMidSum (int [,] colSum) // Суммируем столбцы массива
+{
+    int cols = colSum.GetLength(0);
+    for (int j = 0; j < colSum.GetLength(1); j++)
+    {
+        double sum = 0;
+        for (int i = 0; i < colSum.GetLength(0); i++)
+        {
+            sum = sum + colSum[i, j];
+        }
+        Console.Write($"{sum / cols} ");
+    }
+}
+
 Console.WriteLine();
 Console.WriteLine("Задайте параметры массива.");
 Console.WriteLine();
 Console.Write("Введите количество строк: ");
-int userRow = Convert.ToInt32(Console.ReadLine());
+var userRow = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите количество столбцов: ");
-int userCol = Convert.ToInt32(Console.ReadLine());
+var userCol = Convert.ToInt32(Console.ReadLine());
 int [,] numbers = new int [userRow, userCol];
 Console.WriteLine();
 Console.WriteLine("Массив успешно создан!"); 
 Console.WriteLine();
+
 RandomFillArray(numbers);
+ColMidSum(numbers);
