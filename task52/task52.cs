@@ -28,7 +28,14 @@
         {
             sum = sum + colSum[i, j];
         }
-        Console.Write($"{Math.Pow(sum / cols, 1)}; ");
+        if (j == colSum.GetLength(1) - 1)
+        {
+            Console.Write($"{Math.Pow(sum / cols, 1)} ");
+        }
+        else
+        {
+            Console.Write($"{Math.Pow(sum / cols, 1)}; ");
+        }
     }
 }
 
