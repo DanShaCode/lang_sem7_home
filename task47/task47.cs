@@ -38,3 +38,5 @@ double [,] myArray =  new double [userDataM, userDataN];
 
 RandomFillArray(myArray);
 PrintArray(myArray);
+
+// Протестировано 12.12.2022 13:24

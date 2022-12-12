@@ -90,3 +90,5 @@ else
     SearchElement(newArray);
     PrintArr(newArray);
 }
+
+// Протестировано 12.12.2022 13:27
